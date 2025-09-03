@@ -1,0 +1,20 @@
+{{#*inline "listInner"}}
+{{#each content}}
+<li>
+  <a href="{{href}}" {{#if target}}target="{{target}}" {{/if}}
+    class="transition-colors app-hover:text-accent-primary">{{label}}</a>
+</li>
+{{/each}}
+{{/inline}}
+
+<nav>
+  {{#if isVertical}}
+  <ul class="flex flex-col items-center gap-y-6">
+    {{> listInner}}
+  </ul>
+  {{else}}
+  <ul class="flex flex-wrap items-center justify-center gap-x-6 gap-y-1">
+    {{> listInner}}
+  </ul>
+  {{/if}}
+</nav>

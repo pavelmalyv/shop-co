@@ -1,0 +1,25 @@
+{{#> components/buttons/base
+type=type
+href=href
+target=target
+ariaLabel=ariaLabel
+disabled=disabled
+attrs=attrs
+className=(concatClass "min-h-13 min-w-52 py-2 px-6 inline-flex items-center justify-center border-1
+border-border-primary/10 rounded-lg text-center font-medium transition-[border,_opacity] app-hover:border-border-primary
+disabled:opacity-50 disabled:pointer-events-none"
+
+(variantClass
+default=''
+true='w-full'
+maxMd="max-md:w-full"
+variant=full)
+
+(variantClass
+default='min-h-13'
+sm='min-h-12 max-md:min-h-11'
+variant=size)
+)
+}}
+{{> @partial-block }}
+{{/components/buttons/base}}

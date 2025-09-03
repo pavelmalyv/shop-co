@@ -1,0 +1,37 @@
+{{#> components/buttons/base
+type=type
+href=href
+target=target
+ariaLabel=ariaLabel
+disabled=disabled
+attrs=attrs
+className=(
+concatClass "py-2 px-6 inline-flex items-center justify-center gap-x-3 rounded-lg text-center font-medium
+transition-[background-color,_color,_opacity] app-hover:bg-accent-primary app-hover:text-bg-dark-primary
+disabled:opacity-50 disabled:pointer-events-none"
+(variantClass
+default='bg-bg-dark-primary text-text-secondary'
+white='bg-bg-light-primary text-text-primary'
+variant=color)
+
+(variantClass
+default=''
+true='w-full'
+maxMd="max-md:w-full"
+variant=full)
+
+(variantClass
+default='min-h-13'
+sm='min-h-12 max-md:min-h-11'
+variant=size)
+
+(variantClass
+default='min-w-52'
+true=''
+variant=isShort)
+)}}
+{{> @partial-block }}
+{{#if icon}}
+{{> components/icon widthClass="w-6 max-md:w-5" name=icon }}
+{{/if}}
+{{/components/buttons/base}}

@@ -1,0 +1,12 @@
+{{#> components/buttons/base
+type=type
+href=href
+target=target
+ariaLabel=ariaLabel
+disabled=disabled
+attrs=attrs
+className=(concatClass "aspect-square transition-colors" (variantClass default='app-hover:text-accent-primary'
+dark='app-hover:text-text-primary' variant=hoverColor) )}}
+{{> components/icon name=icon widthClass=(variantClass default="w-6" sm="w-5" variant=size)
+}}
+{{/components/buttons/base}}

@@ -1,0 +1,179 @@
+{{#> layouts/main}}
+
+{{> components/breadcrumbs
+content=(array
+(object label="Главная" href=(getBaseUrl))
+(object label="Кэжуал")
+)}}
+
+{{#*inline "filterInner"}}
+<div class="flex items-start justify-between gap-x-4 mb-6">
+  <h2 class="text-xl font-bold">Фильтр</h2>
+  {{> @partial-block }}
+</div>
+<form id="{{accordionId}}" data-accordion="open" class="space-y-6 max-md:space-y-5">
+  {{#* inline "accordionItem"}}
+  <div class="pt-6 max-md:pt-5 border-t-1 border-border-primary/10">
+    <h3 id="{{id}}-heading">
+      <button type="button" data-accordion-target="#{{id}}-body" aria-expanded="true" aria-controls="{{id}}-body"
+        class="group text-xl font-bold flex items-start justify-between w-full gap-x-2">
+        <span>{{title}}</span>
+        <span class="group-[[aria-expanded=true]]:rotate-180">
+          {{>components/icon widthClass="w-6 max-md:w-4" name="forward-bottom"}}
+        </span>
+      </button>
+    </h3>
+    <div id="{{id}}-body" aria-labelledby="{{id}}-heading" class="mt-6 max-md:mt-4 hidden">
+      {{> @partial-block }}
+    </div>
+  </div>
+  {{/inline}}
+
+  {{#> accordionItem id=(concatString accordionId "-price") title="Цена"}}
+  <div data-js-range data-min="0" data-max="20000">
+    <div class="py-2">
+      <div data-js-range-slider></div>
+    </div>
+    <div class="flex flex-wrap gap-1 items-center justify-between mt-1">
+      <div data-js-range-min-value></div>
+      <div data-js-range-max-value></div>
+    </div>
+  </div>
+  {{/accordionItem}}
+
+  {{#> accordionItem id=(concatString accordionId "-color") title="Цвет"}}
+  {{> components/fields/colorOptions
+  style="border"
+  isMultiple="true"
+  name="color"
+  content=(array
+  (object value="#00c12b" ariaLabel="Зеленый")
+  (object value="#F50606" ariaLabel="Красный")
+  (object value="#F5DD06" ariaLabel="Жёлтый")
+  (object value="#F57906" ariaLabel="Оранжевый")
+  (object value="#06CAF5" ariaLabel="Голубой")
+  (object value="#063AF5" ariaLabel="Синий")
+  (object value="#7D06F5" ariaLabel="Фиолетовый")
+  (object value="#F506A4" ariaLabel="Розовый")
+  (object value="#FFFFFF" ariaLabel="Белый")
+  (object value="#000000" ariaLabel="Черный")
+  )}}
+  {{/accordionItem}}
+
+  {{#> accordionItem id=(concatString accordionId "-size") title="Размер"}}
+  {{> components/fields/textOptions
+  name="size"
+  isMultiple="true"
+  content=(array
+  (object value="XSS")
+  (object value="XS")
+  (object value="S")
+  (object value="M")
+  (object value="L")
+  (object value="XL")
+  (object value="XXL")
+  (object value="3XL")
+  (object value="4XL")
+  )}}
+  {{/accordionItem}}
+
+  {{#> components/buttons/button full="true"}}Применить фильтр{{/components/buttons/button}}
+</form>
+{{/inline}}
+
+{{#> components/section }}
+{{#> components/container }}
+<div class="flex items-start gap-x-5">
+  <aside
+    class="flex-[--spacing(78)] min-w-68 px-6 pt-5 pb-7 border-1 border-border-primary/10 rounded-sm max-lg:hidden">
+    {{#> filterInner accordionId="accordion-filter" }}
+    <div class="text-text-primary/40">
+      {{> components/icon name="filter"}}
+    </div>
+    {{/filterInner}}
+  </aside>
+  <div class="flex-[--spacing(226)]">
+    <div class="mb-4 max-lg:mb-7 max-lg:flex max-lg:items-end max-lg:justify-between max-lg:gap-x-4">
+      <div class="flex items-end justify-between gap-x-4 gap-y-6 flex-wrap">
+        <h1 class="text-4xl font-bold leading-none">Кэжуал</h1>
+        <div class="flex flex-wrap items-center gap-x-3 gap-y-1.5">
+          <div class="text-text-primary/60">Показано 1-10 из 100 товаров</div>
+          <label class="inline-flex items-center gap-x-2 gap-y-0.5 flex-wrap">
+            <span class="text-text-primary/60">Сортировать по:</span>
+            <span class="flex items-center gap-x-1">
+              <select name="sort" class="w-36 p-0 border-0 bg-transparent appearance-none bg-none">
+                <option value="popular|desc">Популярности</option>
+                <option value="price|ask">Возрастанию цены</option>
+                <option value="price|desc">Убыванию цены</option>
+              </select>
+              {{> components/icon name="forward-bottom" widthClass="w-4" }}
+            </span>
+          </label>
+        </div>
+      </div>
+      <div class="lg:hidden">
+        {{> components/buttons/iconFill icon="filter" ariaLabel="Меню" attrs='data-modal-target="catalog-filter-modal"
+        data-modal-show="catalog-filter-modal"'}}
+      </div>
+    </div>
+    <ul class="grid grid-cols-3 max-sm:grid-cols-2 gap-x-5 max-lg:gap-x-3 gap-y-9 max-lg:gap-y-6">
+      {{#*inline "productItem"}}
+      <li class="{{#if isFirst}}max-sm:col-span-full{{/if}}">
+        {{> components/productCard
+        title="Футболка с лентами"
+        img=(object src="img/products/previews/t_shirt_with_tape_details.webp" width="590" height="596" alt="")
+        stars=(array true true true true true)
+        rating="5.0"
+        price="2 400"
+        oldPrice="2 600"
+        discountPercent="20"}}
+      </li>
+      {{/inline}}
+
+      {{> productItem isFirst="true"}}
+      {{> productItem}}
+      {{> productItem}}
+      {{> productItem}}
+      {{> productItem}}
+      {{> productItem}}
+      {{> productItem}}
+      {{> productItem}}
+      {{> productItem}}
+    </ul>
+    <div
+      class="flex items-center justify-between gap-x-5 pt-5 mt-8 max-md:mt-6 border-t-1 border-border-primary/10 max-md:flex-wrap max-md:gap-y-3">
+      {{#> components/buttons/textIcon icon="arrow-prev" disabled="true" }}Назад{{/components/buttons/textIcon}}
+      <ul class="flex items-center md:gap-x-0.5 max-md:-order-1 max-md:flex-[0_0_100%] max-md:justify-center">
+        {{#*inline "paginationItem"}}
+        <li>
+          <a href="{{href}}" {{#if ariaCurrent}} aria-current="page" {{/if}}
+            class="w-10 max-md:w-9 aspect-square inline-flex items-center justify-center text-sm max-md:text-xs font-medium not-[[aria-current]]:text-text-primary/50 [[aria-current]]:bg-bg-dark-primary/6 rounded-2xs app-hover:text-text-primary transition-colors">{{label}}</a>
+        </li>
+        {{/inline}}
+
+        {{> paginationItem href="#" label="1" ariaCurrent="true"}}
+        {{> paginationItem href="#" label="2"}}
+        {{> paginationItem href="#" label="3"}}
+        <li class="text-sm font-medium text-text-primary/50">...</li>
+        {{> paginationItem href="#" label="4"}}
+        {{> paginationItem href="#" label="5"}}
+        {{> paginationItem href="#" label="6"}}
+      </ul>
+      {{#> components/buttons/textIcon icon="arrow-next" alignIcon="right"}}Вперед{{/components/buttons/textIcon}}
+    </div>
+  </div>
+</div>
+{{/components/container }}
+{{/components/section }}
+
+{{#> components/modal variant="bottom" id="catalog-filter-modal" isUnstyled="true" }}
+<div class="max-w-full w-150 pt-5 pb-6 px-4.5 rounded-t-sm overflow-hidden bg-bg-light-primary">
+  {{#> filterInner accordionId="accordion-filter-modal" }}
+  <div class="text-text-primary/40">
+    {{> components/buttons/icon icon="close" ariaLabel="Закрыть" attrs="data-modal-hide='catalog-filter-modal'" }}
+  </div>
+  {{/filterInner}}
+</div>
+{{/components/modal}}
+
+{{/layouts/main}}

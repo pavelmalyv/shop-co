@@ -1,0 +1,15 @@
+<div class="flex flex-wrap gap-4 max-md:gap-3">
+  {{#each content}}
+  <label>
+    <input type="{{#if ../isMultiple}}checkbox{{else}}radio{{/if}}" name="{{../name}}" value="{{value}}"
+      aria-label="{{ariaLabel}}" class="peer sr-only" {{#if checked}}checked{{/if}} />
+    <span style="--bg: {{value}}"
+      class="[--visibility:hidden] peer-checked:[--visibility:visible] group relative block w-10 aspect-square rounded-full bg-(--bg) peer-focus-visible:outline-2 outline-accent-primary {{variantClass default='' border='inset-ring-2 inset-ring-border-primary/20' variant=../style}}">
+      <span
+        class="[visibility:var(--visibility)] absolute top-1/2 left-1/2 -translate-1/2 text-text-secondary transition-[opacity,_visibility] not-has-group-peer-checked:opacity-0">
+        {{> components/icon name="accept" widthClass="w-4" }}
+      </span>
+    </span>
+  </label>
+  {{/each}}
+</div>
