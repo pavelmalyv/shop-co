@@ -1,0 +1,11 @@
+<div data-js-field class="w-full">
+  <label class="relative block">
+    <span class="absolute top-1/2 left-4 -translate-y-1/2 text-text-primary/40">
+      {{> components/icon widthClass="w-6 max-md:w-5" name=icon}}
+    </span>
+    <input name="{{name}}" placeholder="{{placeholder}}" {{#if type}}type="{{type}}" {{else}}type="text" {{/if}} {{#if
+      required}}required{{/if}} {{#if required}}autocomplete="{{autocomplete}}" {{/if}}
+      class="w-full h-12 max-md:h-11 pl-13 max-md:pl-12 pr-4 max-md:pr-3 border-2 rounded-lg text-text-primary transition-colors placeholder:text-text-primary/40 outline-none {{variantClass default='border-bg-light-secondary bg-bg-light-secondary focus-visible:border-accent-primary' white='border-bg-light-primary bg-bg-light-primary focus-visible:border-accent-primary' variant=color}}">
+  </label>
+  <div class="mt-2 max-md:mt-1 text-sm text-warning-primary not-[&.is-active]:hidden" data-js-field-error-message></div>
+</div>

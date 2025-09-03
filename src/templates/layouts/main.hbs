@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop.co</title>
+  <meta name="description"
+    content="Просмотрите наш разнообразный ассортимент тщательно созданной одежды, призванной подчеркнуть вашу индивидуальность.">
+
+  <link rel="icon" type="image/png" href="favicon/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/svg+xml" href="favicon/favicon.svg">
+  <link rel="shortcut icon" href="favicon/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-title" content="Shop.co">
+  <link rel="manifest" href="favicon/site.webmanifest">
+
+  <link rel="stylesheet" href="/src/styles/index.css">
+</head>
+
+<body>
+  {{#*inline "topMenu"}}
+  {{> components/menu
+  isVertical=isVertical
+  content=(
+  array
+  (object label="Каталог" href="#")
+  (object label="Распродажа" href="#")
+  (object label="Новая коллекция" href="#")
+  (object label="Бренды" href="#")
+  )
+  }}
+  {{/inline}}
+
+  <header class="sticky top-0 left-0 w-full z-(--z-header)">
+    <div class="bg-bg-dark-primary text-text-secondary text-sm py-2.5" data-js-top-banner>
+      {{#> components/container}}
+      <div class="grid md:grid-cols-[1fr_auto_1fr] gap-x-4">
+        <div class="max-md:hidden"></div>
+        <div class="text-center">
+          Зарегистрируйтесь и получите 20&nbsp;% скидку на&nbsp;первый заказ.
+          {{#> components/buttons/link href="#" }}Зарегистрироваться{{/components/buttons/link}}
+        </div>
+        <div class="flex justify-end max-md:hidden">
+          {{>
+          components/buttons/icon
+          icon="close"
+          size="sm"
+          ariaLabel="Закрыть"
+          attrs="data-js-top-banner-close-button"
+          }}
+        </div>
+      </div>
+      {{/components/container}}
+    </div>
+    <div class="border-b-1 bg-bg-light-primary border-bg-light-tertiary">
+      {{#> components/container}}
+      <div class="flex items-center justify-between py-6 max-md:py-5 gap-x-10">
+        <div class="flex items-center gap-x-4">
+          <div class="xl:hidden">
+            {{>
+            components/buttons/icon
+            icon="burger"
+            ariaLabel="Меню"
+            attrs='data-modal-target="header-menu-modal" data-modal-show="header-menu-modal"'
+            }}
+          </div>
+          <div class="shrink-0">{{> components/logo}}</div>
+        </div>
+
+        <div class="xl:contents max-xl:hidden">
+          {{> topMenu }}
+          <form class="flex-[1_0_--spacing(50)]">
+            {{> components/fields/text name="search" icon="magnifier" placeholder="Поиск товаров..."}}
+          </form>
+        </div>
+
+        <div class="flex gap-x-4 max-md:gap-x-3">
+          <div class="xl:hidden">
+            {{> components/buttons/icon href="#" icon="magnifier" ariaLabel="Поиск"}}
+          </div>
+          {{> components/buttons/icon href="#" icon="cart" ariaLabel="Корзина"}}
+          {{> components/buttons/icon href="#" icon="account" ariaLabel="Профиль"}}
+        </div>
+      </div>
+      {{/components/container}}
+    </div>
+  </header>
+
+  <main>{{> @partial-block }}</main>
+
+  <footer class="pt-10 max-md:pt-6">
+    <div class="bg-bg-light-secondary space-y-12 max-lg:space-y-10 max-md:space-y-8 pb-20 max-md:pb-19">
+      <div
+        class="relative before:absolute before:top-0 before:left-0 before:right-0 before:h-1/2 before:bg-bg-light-primary">
+        {{#> components/container }}
+        <div
+          class="relative flex max-lg:flex-col items-center justify-between gap-x-5 py-9 max-md:py-8 px-16 max-md:px-6 rounded-sm bg-bg-dark-primary text-text-secondary max-lg:gap-y-10 max-md:gap-y-8">
+          <h2 class="heading-sm max-lg:text-center">Будьте в&nbsp;курсе наших предложений</h2>
+          <form class="space-y-3 w-full max-w-87 max-lg:max-w-100 max-md:max-w-120" data-js-newsletter-form novalidate>
+            {{> components/fields/text type="email" icon="letter" color="white" placeholder="Ваш email"
+            required="required"
+            name="email"
+            autocomplete="email"
+            }}
+            {{#> components/buttons/button type="submit" size="sm" full="true" color="white" }}
+            Подписаться на новости
+            {{/components/buttons/button}}
+          </form>
+        </div>
+        {{/components/container}}
+      </div>
+
+      {{#> components/container }}
+      <div
+        class="flex items-start gap-x-10 justify-between mb-12 max-lg:mb-11 max-md:mb-10 max-lg:gap-y-8 max-md:gap-y-6 max-lg:flex-col">
+        <div class="w-full max-w-54 max-lg:max-w-90 space-y-9 max-lg:space-y-7 max-md:space-y-5">
+          <div class="space-y-6 max-lg:space-y-5 max-md:space-y-4">
+            {{> components/logo }}
+            <div class="text-sm text-text-primary/60 leading-[1.5]">У нас есть одежда, которая соответствует вашему
+              стилю и&nbsp;которой вы&nbsp;будете гордиться.
+            </div>
+          </div>
+
+          <ul class="flex flex-wrap gap-x-2 gap-y-3">
+            {{#*inline "socialsItem"}}
+            <li>
+              <a href="{{href}}" target="_blank" aria-label="{{ariaLabel}}"
+                class="flex items-center justify-center w-7 aspect-square border-1 border-border-primary/20 rounded-full transition-colors app-hover:bg-bg-dark-primary app-hover:text-text-secondary app-hover:border-border-primary">
+                {{> components/icon name=icon widthClass="w-3"}}
+              </a>
+            </li>
+            {{/inline}}
+
+            {{> socialsItem href="#" icon="twitter-logo" ariaLabel="twitter"}}
+            {{> socialsItem href="#" icon="github-logo" ariaLabel="github"}}
+          </ul>
+        </div>
+        <nav
+          class="grid grid-cols-[repeat(4,_auto)] max-md:grid-cols-[repeat(2,_auto)] gap-x-8 max-md:gap-x-4 w-full max-w-220 max-md:gap-y-6">
+          {{#*inline "bottomMenuCol"}}
+          <div>
+            <div class="mb-6 max-md:mb-4 font-medium uppercase tracking-wide leading-[1.125]">{{title}}</div>
+            <ul class="space-y-5 max-md:space-y-4">
+              {{#each content}}
+              <li>
+                <a href="{{href}}" {{#if target}}target="{{target}}" {{/if}}
+                  class="text-text-primary/60 transition-colors app-hover:text-accent-primary">{{label}}</a>
+              </li>
+              {{/each}}
+            </ul>
+          </div>
+          {{/inline}}
+
+          {{> bottomMenuCol title="О компании" content=(array (object href="#" label="О нас") (object href="#"
+          label="Услуги") (object href="#" label="Наши работы") (object href="#" label="Карьера")) }}
+
+          {{> bottomMenuCol title="Помощь" content=(array (object href="#" label="Поддержка клиентов") (object href="#"
+          label="Доставка") (object href="#" label="Условия использования") (object href="#" label="Политика
+          конфиденциальности")) }}
+
+          {{> bottomMenuCol title="FAQ" content=(array (object href="#" label="Аккаунт") (object
+          href="#"
+          label="Доставка") (object href="#" label="Заказы") (object href="#" label="Оплата")) }}
+
+          {{> bottomMenuCol title="Материалы" content=(array (object
+          href="#"
+          label="Электронная книга") (object href="#" label="Разработчикам") (object href="#" label="Блог") (object
+          href="#" label="Плейлист на YouTube")) }}
+        </nav>
+      </div>
+      <div
+        class="flex flex-wrap items-center justify-between gap-x-4 gap-y-5 max-md:gap-y-4 pt-6 max-lg:pt-5 max-md:pt-4 border-t-1 border-border-primary/10 max-md:flex-col max-md:text-center">
+        <small class="text-sm text-text-primary/60">
+          {{#> components/buttons/link
+          href="https://www.figma.com/community/file/1273571982885059508/e-commerce-website-template-freebie"
+          target="_blank" }}Дизайн{{/components/buttons/link}}
+          от Hamza Naeem /
+          {{#> components/buttons/link href="https://creativecommons.org/licenses/by/4.0/" target="_blank" }}
+          CC BY 4.0
+          {{/components/buttons/link}}
+          / внесены&nbsp;изменения
+        </small>
+
+        <ul class="flex flex-wrap items-center gap-2">
+          {{#*inline "paymentItem"}}
+          <li
+            class="flex items-center justify-center w-12 aspect-[12/8] max-md:w-10 max-md:min-h-7 border-1 border-border-secondary rounded-3xs bg-bg-light-primary">
+            <img src="{{src}}" width="{{width}}" height="{{height}}" alt="{{alt}}" class="w-[79%]" loading="lazy">
+          </li>
+          {{/inline}}
+
+          {{> paymentItem src="img/payment/visa-logo.svg" width="100" height="45" alt="логотип Visa"}}
+          {{> paymentItem src="img/payment/mastercard-logo.svg" width="100" height="45" alt="логотип Mastercard"}}
+          {{> paymentItem src="img/payment/paypal-logo.svg" width="100" height="45" alt="логотип Paypal"}}
+          {{> paymentItem src="img/payment/apple-pay-logo.svg" width="100" height="45" alt="логотип Apple Pay "}}
+          {{> paymentItem src="img/payment/google-pay-logo.svg" width="100" height="45" alt="логотип Google Pay"}}
+        </ul>
+      </div>
+      {{/components/container}}
+    </div>
+  </footer>
+
+  {{#> components/modal id="header-menu-modal" }}
+  <div class="flex flex-col items-center gap-y-14">
+    {{> components/logo }}
+    {{> topMenu isVertical=true }}
+  </div>
+  {{/components/modal}}
+
+  <script type="module" src="/src/scripts/main.ts"></script>
+</body>
+
+</html>

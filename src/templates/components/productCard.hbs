@@ -1,0 +1,9 @@
+<article>
+  <img class="w-full mb-4 max-lg:mb-3 max-md:mb-2 rounded-sm max-md:rounded-xs bg-fill-primary" src="{{img.src}}"
+    width="{{img.width}}" height="{{img.height}}" alt="{{img.alt}}" loading="lazy">
+  <div class="space-y-2">
+    <h3 class="text-xl max-lg:text-lg max-md:text-base font-bold">{{title}}</h3>
+    {{> components/ratingNumber stars=stars rating=rating}}
+    {{> components/price price=price oldPrice=oldPrice discountPercent=discountPercent }}
+  </div>
+</article>

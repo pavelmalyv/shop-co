@@ -1,0 +1,11 @@
+{{#if href}}
+<a href="{{href}}" {{#if target}}target="{{target}}" {{/if}} {{#if ariaLabel}}aria-label="{{ariaLabel}}" {{/if}}
+  class="{{className}}" {{{attrs}}}>
+  {{> @partial-block }}
+</a>
+{{else}}
+<button type="{{#if type}}{{type}}{{else}}button{{/if}}" {{#if ariaLabel}}aria-label="{{ariaLabel}}" {{/if}} {{#if
+  disabled}}disabled{{/if}} class="{{className}}" {{{attrs}}}>
+  {{> @partial-block }}
+</button>
+{{/if}}

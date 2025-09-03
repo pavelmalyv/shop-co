@@ -1,0 +1,17 @@
+@layer components {
+  .noUi-target {
+    @apply px-2.5;
+
+    &.noUi-horizontal {
+      @apply h-1.5! border-0! rounded-sm! bg-bg-light-secondary! shadow-none!;
+    }
+
+    .noUi-connect {
+      @apply bg-bg-dark-primary!;
+    }
+
+    .noUi-handle {
+      @apply w-5! h-5! border-0! shadow-none! bg-bg-dark-primary! -top-1.75! -right-2.5! rounded-full! before:hidden! after:hidden!;
+    }
+  }
+}

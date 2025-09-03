@@ -1,0 +1,9 @@
+<div
+  class="relative flex items-center px-5 max-md:px-4 rounded-full bg-bg-light-secondary touch-manipulation {{variantClass default='h-13 gap-x-3' sm='h-11 gap-x-2 max-md:h-9' variant=size}}">
+  {{>components/buttons/icon icon="minus" attrs=(concatAttrs
+  data-input-counter-decrement=id)}}
+  <input id="{{id}}" type="text" value="{{value}}"
+    class="bg-transparent border-0 grow-1 p-0 text-center placeholder:text-text-primary/50 {{variantClass default='w-15' sm='w-8 text-sm' variant=size}}"
+    placeholder="0" data-input-counter data-input-counter-min="{{min}}" data-input-counter-max="{{max}}">
+  {{>components/buttons/icon icon="plus" attrs=(concatAttrs data-input-counter-increment=id)}}
+</div>

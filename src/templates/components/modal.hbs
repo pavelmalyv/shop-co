@@ -1,0 +1,13 @@
+<div id="{{id}}" tabindex="-1" aria-hidden="true"
+  class="hidden overflow-auto fixed inset-0 z-(--z-modal) w-full max-h-full bg-bg-dark-primary/20 transition-[opacity,_display] transition-discrete duration-(--duration-md) opacity-100 [[aria-hidden=true]]:opacity-0 starting:opacity-0">
+  <div class="max-w-full
+    {{variantClass default='w-full min-h-full my-auto' bottom='mt-auto' variant=variant}}
+    {{variantClass default='flex flex-col gap-y-6 bg-bg-light-primary pt-4 pb-8 px-4' true='' variant=isUnstyled}}">
+    {{#unless isUnstyled}}
+    <div class="flex justify-end">
+      {{> components/buttons/icon icon="close" ariaLabel="Закрыть" attrs=(concatAttrs data-modal-hide=id) }}
+    </div>
+    {{/unless}}
+    <div class="flex flex-col items-center justify-center grow-1">{{> @partial-block }}</div>
+  </div>
+</div>

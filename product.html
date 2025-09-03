@@ -1,0 +1,204 @@
+{{#> layouts/main}}
+
+{{> components/breadcrumbs
+content=(array
+(object label="Главная" href=(getBaseUrl))
+(object label="Каталог" href="#")
+(object label="Мужчины" href="#")
+(object label="Футболки")
+)}}
+
+{{#> components/section }}
+{{#> components/container }}
+<div class="flex gap-10 max-lg:flex-col max-md:gap-y-5">
+  <div class="md:h-139 flex gap-3 md:flex-[--spacing(152)] min-w-0 max-md:flex-col-reverse overflow-hidden"
+    data-js-product-sliders>
+    <div
+      class="swiper md:flex-[0_1_--spacing(38)] md:-my-1.5! max-md:-mx-1.5! max-md:w-[calc(100%_+_--spacing(3))] max-md:h-26"
+      data-js-product-preview-slider>
+      <div class="swiper-wrapper">
+        {{#*inline "previewSlide"}}
+        <div class="swiper-slide md:py-1.5 max-md:px-1.5 group">
+          <div
+            class="w-full h-full rounded-sm overflow-hidden border-1 border-bg-light-quaternary transition-colors group-[&.swiper-slide-thumb-active]:border-border-primary bg-bg-light-quaternary">
+            <img src="{{src}}" width="{{width}}" height="{{height}}" alt="{{alt}}" loading="lazy"
+              class="w-full h-full object-contain">
+          </div>
+        </div>
+        {{/inline}}
+
+        {{> previewSlide src="img/products/card/t-shirt-preview1.webp" width="304" height="334" alt=""}}
+        {{> previewSlide src="img/products/card/t-shirt-preview1.webp" width="304" height="334" alt=""}}
+        {{> previewSlide src="img/products/card/t-shirt-preview1.webp" width="304" height="334" alt=""}}
+        {{> previewSlide src="img/products/card/t-shirt-preview1.webp" width="304" height="334" alt=""}}
+        {{> previewSlide src="img/products/card/t-shirt-preview1.webp" width="304" height="334" alt=""}}
+        {{> previewSlide src="img/products/card/t-shirt-preview1.webp" width="304" height="334" alt=""}}
+      </div>
+    </div>
+    <div class="swiper md:flex-[--spacing(111)] rounded-sm bg-bg-light-quaternary max-md:w-full max-md:h-72"
+      data-js-product-main-slider>
+      <div class="swiper-wrapper">
+        {{#*inline "mainSlide"}}
+        <div class="swiper-slide">
+          <img src="{{src}}" width="{{width}}" height="{{height}}" alt="{{alt}}" loading="lazy"
+            class="w-full h-full object-contain">
+        </div>
+        {{/inline}}
+
+        {{> mainSlide src="img/products/card/t-shirt1.webp" width="888" height="974" alt=""}}
+        {{> mainSlide src="img/products/card/t-shirt1.webp" width="888" height="974" alt=""}}
+        {{> mainSlide src="img/products/card/t-shirt1.webp" width="888" height="974" alt=""}}
+        {{> mainSlide src="img/products/card/t-shirt1.webp" width="888" height="974" alt=""}}
+        {{> mainSlide src="img/products/card/t-shirt1.webp" width="888" height="974" alt=""}}
+        {{> mainSlide src="img/products/card/t-shirt1.webp" width="888" height="974" alt=""}}
+      </div>
+    </div>
+  </div>
+  <div class="flex-[--spacing(148)]">
+    <div class="space-y-3 mb-6 max-md:mb-5">
+      <h1 class="heading-sm">Футболка с лентами</h1>
+      {{> components/ratingNumber stars=(array true true true true false) rating="4.5" size="lg" }}
+      {{> components/price price="2 600" oldPrice="3 000" discountPercent="40" size="lg" }}
+    </div>
+    <div class="text-text-primary/60 leading-1.375 mb-6">Эта футболка с&nbsp;принтом идеально подходит для&nbsp;любого
+      случая. Она
+      выполнена из&nbsp;мягкой и&nbsp;дышащей ткани,
+      обеспечивая высокий комфорт.</div>
+    <form>
+      {{#*inline "fieldset"}}
+      <fieldset class="py-6 border-b-1 first:border-t-1 border-border-primary/10">
+        <legend class="sr-only">{{legend}}</legend>
+        <div aria-hidden="true" class="mb-4 text-text-primary/60">{{legend}}</div>
+
+        {{> @partial-block }}
+      </fieldset>
+      {{/inline}}
+
+      {{#> fieldset legend="Выберите цвет"}}
+      {{> components/fields/colorOptions
+      name="color"
+      content=(array
+      (object value="#4F4631" ariaLabel="Оливково-коричневый" checked="true")
+      (object value="#314F4A" ariaLabel="Глубокий хвойный")
+      (object value="#31344F" ariaLabel="Тёмно-индиговый")
+      )}}
+      {{/fieldset}}
+
+      {{#> fieldset legend="Выберите размер"}}
+      {{> components/fields/textOptions
+      name="size"
+      content=(array
+      (object value="S" checked="true")
+      (object value="M")
+      (object value="L")
+      (object value="XL")
+      )}}
+      {{/fieldset}}
+
+      <div class="group inline-flex mt-6 relative" data-js-add-cart>
+        <div class="absolute top-0 left-0 min-w-full not-group-[&.is-active]:hidden" data-js-add-cart-quantity>
+          {{> components/fields/quantity id="quantity-cart" min="0" max="100"}}
+        </div>
+        <div class="group-[&.is-active]:invisible">
+          {{#> components/buttons/button attrs="data-js-add-cart-button" }}Добавить
+          в&nbsp;корзину{{/components/buttons/button}}
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+{{/components/container }}
+{{/components/section }}
+
+{{#> components/section }}
+{{#> components/container }}
+<div class="flex md:items-center justify-between flex-wrap gap-x-5 gap-y-4 mb-6 max-md:mb-5 max-md:flex-col">
+  <div class="flex items-end gap-x-2">
+    <h2 class="text-2xl max-md:text-xl font-bold">Отзывы</h2>
+    <span class="text-text-primary/60 leading-[1.375]">(451)</span>
+  </div>
+
+  <div class="flex items-start gap-x-2 gap-y-3  max-md:flex-wrap">
+    <div class="flex-1 min-w-48 relative">
+      <label aria-label="Сортировать">
+        <select name="sort"
+          class="w-full pl-5 pr-10 h-12 max-md:h-11 border-0 rounded-full bg-bg-light-secondary appearance-none bg-none outline-accent-primary outline-offset-0 focus-visible:outline-2 focus-visible:outline-solid">
+          <option value="date|desc">Сначала новые</option>
+          <option value="date|ask">Сначала старые</option>
+        </select>
+      </label>
+      <div class="absolute top-1/2 right-5 -translate-y-1/2">
+        {{> components/icon name="forward-bottom" widthClass="w-4" }}
+      </div>
+    </div>
+    <div class="flex-1">
+      {{#> components/buttons/button size="sm" full="maxMd" }}
+      Написать отзыв
+      {{/components/buttons/button}}
+    </div>
+  </div>
+</div>
+
+<ul class="grid grid-cols-2 max-md:grid-cols-1 gap-5 max-md:gap-4 mb-9 max-md:mb-5">
+  {{#*inline "reviewItem"}}
+  <li>
+    {{> components/reviewCard stars=(array true true true true false) author="Алексей М." review="Раньше было сложно
+    найти одежду, которая соответствует моему стилю, пока я не открыл для себя Shop.co.
+    Ассортимент у них действительно впечатляющий, он подходит для самых разных вкусов и случаев."
+    posted="14 августа 2025"}}
+  </li>
+  {{/inline}}
+
+  {{> reviewItem}}
+  {{> reviewItem}}
+  {{> reviewItem}}
+  {{> reviewItem}}
+  {{> reviewItem}}
+  {{> reviewItem}}
+</ul>
+<div class="flex justify-center">
+  {{#> components/buttons/border }}Загрузить ещё{{/components/buttons/border }}
+</div>
+{{/components/container }}
+{{/components/section }}
+
+{{> partials/categorySlider
+title="Похожие товары"
+slides=(array
+
+(object
+title="Футболка с лентами"
+img=(object src="img/products/previews/t_shirt_with_tape_details.webp" width="590" height="596" alt="")
+stars=(array true true true true true)
+rating="5.0"
+price="1 200")
+
+(object
+title="Джинсы скинни"
+img=(object src="img/products/previews/skinny-fit-jeans.webp" width="590" height="596" alt="")
+stars=(array true true true false)
+rating="4.5"
+price="2 400"
+oldPrice="2 600"
+discountPercent="20")
+
+(object
+title="Футболка с лентами"
+img=(object src="img/products/previews/t_shirt_with_tape_details.webp" width="590" height="596" alt="")
+stars=(array true true true true true)
+rating="5.0"
+price="1 200")
+
+(object
+title="Джинсы скинни"
+img=(object src="img/products/previews/skinny-fit-jeans.webp" width="590" height="596" alt="")
+stars=(array true true true false)
+rating="4.5"
+price="2 400"
+oldPrice="2 600"
+discountPercent="20")
+
+)
+}}
+
+{{/layouts/main}}

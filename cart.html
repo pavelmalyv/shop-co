@@ -1,0 +1,101 @@
+{{#> layouts/main}}
+
+{{> components/breadcrumbs
+content=(array
+(object label="Главная" href=(getBaseUrl))
+(object label="Корзина")
+)}}
+
+{{#> components/section }}
+{{#> components/container }}
+{{#> components/heading tag="h1" align="left" size="sm" }}Корзина{{/components/heading }}
+<div class="flex items-start gap-5 max-lg:flex-col" data-js-cart>
+  <div
+    class="lg:flex-[--spacing(179)] py-5 px-6 max-md:p-4 space-y-6 max-lg:space-y-5 max-md:space-y-4 border-1 border-border-primary/10 rounded-sm max-lg:w-full has-[>:only-child]:p-0 has-[>:only-child]:border-0">
+    <div data-test class="group not-only:hidden text-xl text-text-primary/60 mb-12">Корзина пуста</div>
+
+    {{#*inline "cartCard"}}
+    <article
+      class="not-last:border-b-1 border-border-primary/10 not-last:pb-6 max-lg:not-last:pb-5 max-md:not-last:pb-4"
+      data-js-cart-card>
+      <form id="{{id}}" data-js-cart-form class="flex items-start gap-x-4 max-sm:flex-col max-sm:gap-y-4">
+        <input type="hidden" name="price" value="260000">
+        <input type="hidden" name="discount" value="20000">
+        <img src="img/products/cart/gradient-graphic-t-shirt.webp" width="248" height="248" alt=""
+          class="w-31 max-lg:w-28 max-md:w-25 rounded-2xs bg-fill-primary" loading="lazy">
+        <div class="self-center w-full">
+          <div class="flex items-start justify-between gap-x-4 mb-1">
+            <h2 class="text-xl max-lg:text-lg max-md:text-base font-bold">Футболка с&nbsp;градиентным рисунком</h2>
+            <div class="text-warning-primary">
+              {{> components/buttons/icon
+              icon="delete"
+              ariaLabel="Удалить из корзины"
+              hoverColor="dark"
+              attrs="data-js-cart-delete-button"}}
+            </div>
+          </div>
+          <dl class="mb-2 space-y-1">
+            {{#*inline "descriptionItem"}}
+            <div class="text-sm max-md:text-sm">
+              <dt class="inline-flex">{{title}}:</dt>
+              <dd class="inline-flex text-text-primary/60">{{content}}</dd>
+            </div>
+            {{/inline}}
+
+            {{> descriptionItem title="Размер" content="L"}}
+            {{> descriptionItem title="Цвет" content="Белый"}}
+          </dl>
+          <div class="flex items-end justify-between gap-x-4 gap-y-3 flex-wrap">
+            {{> components/price price="2 600"}}
+            {{> components/fields/quantity id=(concatString id "-quantity") size="sm" value="1" min="1" max="100" }}
+          </div>
+      </form>
+    </article>
+    {{/inline}}
+
+    {{> cartCard id="cart-item1" }}
+    {{> cartCard id="cart-item2" }}
+    {{> cartCard id="cart-item3" }}
+  </div>
+  <div
+    class="lg:flex-[--spacing(126)] pt-5 pb-8 px-6 max-md:p-5 border-1 border-border-primary/10 rounded-sm max-lg:w-full">
+    <h2 class="text-2xl max-md:text-xl mb-6 max-lg:mb-5 max-md:mb-4 font-bold">Ваш заказ</h2>
+    <dl class="space-y-5 mb-6 max-lg:mb-5 max-md:mb-4">
+      {{#* inline "summaryDescriptionItem"}}
+      <div
+        class="group flex items-start justify-between gap-x-4 text-xl max-lg:text-lg max-md:text-base last:border-t-1 last:pt-5 border-border-primary/10">
+        <dt class="not-group-last:text-text-primary/60">{{title}}</dt>
+        <dd
+          class="group-last:text-2xl max-md:group-last:text-xl text-right font-bold {{variantClass default='' true='text-warning-primary' variant=isDiscount}}">
+          <span {{{attrsContent}}}>{{content}}</span> ₽
+        </dd>
+      </div>
+      {{/inline}}
+
+      {{> summaryDescriptionItem title="Сумма без скидок" content="0" attrsContent="data-js-cart-original-price" }} {{>
+      summaryDescriptionItem title="Скидка"
+      content="0" attrsContent="data-js-cart-discount" isDiscount="true" }}
+      {{> summaryDescriptionItem title="Стоимость доставки:" content="0" }}
+      {{> summaryDescriptionItem title="Итого:" content="0" attrsContent="data-js-cart-total" }}
+    </dl>
+    <form class="flex flex-wrap gap-3 mb-6 max-lg:mb-5 max-md:mb-4" data-js-cart-form-promo>
+      <div class="flex-[3_0_--spacing(45)]">
+        {{> components/fields/text icon="label" name="promo" placeholder="Промокод" }}
+      </div>
+      <div class="grow-1">
+        {{#> components/buttons/button type="submit" size="sm" isShort="true" full="true"
+        }}Применить{{/components/buttons/button }}
+      </div>
+    </form>
+    <form>
+      {{#> components/buttons/button type="submit" full="true" icon="arrow-next"
+      attrs="data-js-cart-checkout-button"}}
+      Перейти к&nbsp;оформлению
+      {{/components/buttons/button}}
+    </form>
+  </div>
+</div>
+{{/components/container }}
+{{/components/section }}
+
+{{/layouts/main}}

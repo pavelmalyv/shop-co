@@ -1,0 +1,15 @@
+{{#*inline "starItem"}}
+{{> components/icon widthClass=(variantClass default="w-5 max-md:w-4" lg="w-6 max-md:w-5" variant=size) name="star" }}
+{{/inline}}
+
+<div class="flex text-accent-primary {{variantClass default='gap-x-1' lg='gap-x-2' variant=size}}">
+  {{#each stars}}
+  {{#if this}}
+  {{> starItem size=../size}}
+  {{else}}
+  <div class="w-2.5 overflow-hidden">
+    {{> starItem size=../size}}
+  </div>
+  {{/if}}
+  {{/each}}
+</div>

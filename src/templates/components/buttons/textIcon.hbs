@@ -1,0 +1,19 @@
+{{#> components/buttons/base
+type=type
+href=href
+target=target
+ariaLabel=ariaLabel
+disabled=disabled
+attrs=attrs
+className=(concatClass "inline-flex items-center px-4 max-md:px-3 py-1 gap-x-2 min-h-9 border-1 border-border-primary/10
+rounded-2xs
+app-hover:border-border-primary transition-colors disabled:opacity-50 disabled:pointer-events-none max-md:text-xs"
+
+(variantClass
+default=''
+right='flex-row-reverse'
+variant=alignIcon))
+}}
+{{> components/icon name=icon widthClass="w-5 max-md:w-4"}}
+{{> @partial-block }}
+{{/components/buttons/base}}

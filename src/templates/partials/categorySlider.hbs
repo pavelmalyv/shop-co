@@ -1,0 +1,25 @@
+{{#> components/section }}
+<div class="overflow-hidden">
+  {{#> components/container }}
+  {{#> components/heading }}{{title}}{{/components/heading }}
+  <div class="max-xl:-mx-(--container-padding-x) mb-9 max-md:mb-6">
+    <div class="swiper -mx-2.5! max-md:-mx-2! max-xl:px-(--container-padding-x)!" data-js-category-slider>
+      <div class="swiper-wrapper h-auto!">
+        {{#each slides}}
+        <div class="swiper-slide px-2.5 max-md:px-2!">
+          {{#with this}}
+          {{> components/productCard title=title img=img stars=stars rating=rating price=price }}
+          {{/with}}
+        </div>
+        {{/each}}
+      </div>
+    </div>
+  </div>
+  {{#if isMoreButton}}
+  <div class="flex flex-col items-center">
+    {{#> components/buttons/border full="maxMd" }}Смотреть все{{/components/buttons/border }}
+  </div>
+  {{/if}}
+  {{/components/container }}
+</div>
+{{/components/section }}

@@ -1,0 +1,19 @@
+{{#> layouts/main}}
+
+{{> components/breadcrumbs
+content=(array
+(object label="Главная" href=(getBaseUrl))
+(object label="Навигация")
+)}}
+
+{{#> components/section }}
+{{#> components/container }}
+<div class="flex flex-col gap-y-2">
+  {{#> components/buttons/link href=(getBaseUrl)}}Главная{{/components/buttons/link}}
+  {{#> components/buttons/link href="product"}}Карточка товара{{/components/buttons/link}}
+  {{#> components/buttons/link href="catalog"}}Каталог{{/components/buttons/link}}
+  {{#> components/buttons/link href="cart"}}Корзина{{/components/buttons/link}}
+</div>
+{{/components/container }}
+{{/components/section }}
+{{/layouts/main}}
