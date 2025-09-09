@@ -1,0 +1,14 @@
+mixin product-card(content)
+  article
+    +img(
+      src=content.img.src,
+      width=content.img.width,
+      height=content.img.height,
+      alt=content.img.alt,
+      class="w-full mb-4 max-lg:mb-3 max-md:mb-2 rounded-sm max-md:rounded-xs bg-fill-primary"
+    )
+    div(class="space-y-2")
+      h3(class="text-xl max-lg:text-lg max-md:text-base font-bold")
+        = content.title
+      +rating({ stars: content.stars, rating: content.rating })
+      +price({ price: content.price, oldPrice: content.oldPrice, discountPercent: content.discountPercent })

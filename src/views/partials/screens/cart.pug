@@ -1,0 +1,74 @@
+-
+  const CART_PRODUCT = {
+    price: "260000",
+    discount: "20000",
+    img: {
+      src: "img/products/cart/gradient-graphic-t-shirt.webp",
+      width: "248",
+      height: "248",
+    }
+  };
+
++section
+  +container
+    +heading({ tag: "h1", align: "left", size: "sm" })
+      | Корзина
+    div(class="flex items-start gap-5 max-lg:flex-col", data-js-cart)
+      div(
+        class="lg:flex-[--spacing(179)] py-5 px-6 max-md:p-4 space-y-6 max-lg:space-y-5 max-md:space-y-4 border-1 border-border-primary/10 rounded-sm max-lg:w-full has-[>:only-child]:p-0 has-[>:only-child]:border-0"
+      )
+        div(class="group not-only:hidden text-xl text-text-primary/60 mb-12")
+          | Корзина пуста
+
+        +cart-card("cart-item1", CART_PRODUCT)
+        +cart-card("cart-item2", CART_PRODUCT)
+        +cart-card("cart-item3", CART_PRODUCT)
+      div(
+        class="lg:flex-[--spacing(126)] pt-5 pb-8 px-6 max-md:p-5 border-1 border-border-primary/10 rounded-sm max-lg:w-full"
+      )
+        h2(class="text-2xl max-md:text-xl mb-6 max-lg:mb-5 max-md:mb-4 font-bold")
+          | Ваш заказ
+        dl(class="space-y-5 mb-6 max-lg:mb-5 max-md:mb-4")
+          mixin summaryItem(content, options = {})
+            -
+              const valueClasses = {
+                base: "group-last:text-2xl max-md:group-last:text-xl text-right font-bold",
+                isDiscount: {
+                  false: "",
+                  true: "text-warning-primary",
+                },
+              };
+
+              const valueDiscountClass = valueClasses.isDiscount[options.isDiscount ?? "false"];
+
+            div(
+              class="group flex items-start justify-between gap-x-4 text-xl max-lg:text-lg max-md:text-base last:border-t-1 last:pt-5 border-border-primary/10"
+            )
+              dt(class="not-group-last:text-text-primary/60")
+                = content.title
+              dd(class=valueClasses.base, class=valueDiscountClass)
+                span&attributes(attributes)
+                  = content.value
+                |
+                | ₽
+
+          +summaryItem({ title: "Сумма без скидок", value: "0" })(
+            data-js-cart-original-price
+          )
+          +summaryItem({ title: "Скидка", value: "0" }, { isDiscount: true })(
+            data-js-cart-discount
+          )
+          +summaryItem({ title: "Стоимость доставки:", value: "0" })
+          +summaryItem({ title: "Итого:", value: "0" })(data-js-cart-total)
+        form(class="flex flex-wrap gap-3 mb-6 max-lg:mb-5 max-md:mb-4", data-js-cart-form-promo)
+          div(class="flex-[3_0_--spacing(45)]")
+            +text-field({ icon: "label" })(name="promo", placeholder="Промокод")
+          div(class="grow-1")
+            +button({ size: "sm", isShort: "true", full: "true" })(type="submit")
+              | Применить
+        form
+          +button({ icon: "arrow-next", full: "true" })(
+            type="submit",
+            data-js-cart-checkout-button
+          )
+            | Перейти к&nbsp;оформлению

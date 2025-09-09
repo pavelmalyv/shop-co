@@ -1,0 +1,56 @@
+mixin text-field(options = {})
+  -
+    const fieldClasses = {
+      base: "w-full h-12 max-md:h-11 pl-13 max-md:pl-12 pr-4 max-md:pr-3 border-2 rounded-lg text-text-primary transition-colors placeholder:text-text-primary/40 outline-none",
+      color: {
+        grey: "border-bg-light-secondary bg-bg-light-secondary focus-visible:border-accent-primary",
+        light: "border-bg-light-primary bg-bg-light-primary focus-visible:border-accent-primary",
+      },
+    }
+
+    const fieldColorClass = fieldClasses.color[options.color ?? "grey"];
+
+  div(class="w-full", data-js-field)
+    label(class="relative block")
+      span(class="absolute top-1/2 left-4 -translate-y-1/2 text-2xl max-md:text-xl text-text-primary/40")
+        +icon(options.icon)
+      input(class=fieldClasses.base, class=fieldColorClass)&attributes(attributes)
+    div(
+      class="mt-2 max-md:mt-1 text-sm text-warning-primary not-[&.is-active]:hidden",
+      data-js-field-error-message
+    )
+
+mixin quantity-field(id, options = {})
+  -
+    const wrapperClasses = {
+      base: "relative flex items-center px-5 max-md:px-4 rounded-full bg-bg-light-secondary touch-manipulation",
+      size: {
+        md: "h-13 gap-x-3",
+        sm: "h-11 gap-x-2 max-md:h-9",
+      }
+    };
+
+    const fieldClasses = {
+      base: "bg-transparent border-0 grow-1 p-0 text-center placeholder:text-text-primary/50",
+      size: {
+        md: "w-15",
+        sm: "w-8 text-sm",
+      }
+    };
+
+    const wrapperSizeClass = wrapperClasses.size[options.size ?? "md"];
+    const fieldSizeClass = fieldClasses.size[options.size ?? "md"];
+
+  div(class=wrapperClasses.base, class=wrapperSizeClass)
+    +button-icon("minus")(aria-label="-", data-input-counter-decrement=id)
+    input(
+      type="text",
+      placeholder="0",
+      id=id,
+      data-input-counter,
+      data-input-counter-min=options.min,
+      data-input-counter-max=options.max,
+      class=fieldClasses.base,
+      class=fieldSizeClass
+    )&attributes(attributes)
+    +button-icon("plus")(aria-label="+", data-input-counter-increment=id)

@@ -1,0 +1,8 @@
+extends ../layouts/default
+
+block title
+  | Корзина
+block content
+  +breadcrumbs([{ label: "Главная", href: BASE_PATCH }, { label: "Корзина" }])
+
+  include ../partials/screens/cart

@@ -1,0 +1,26 @@
+mixin rating(content, options = {})
+  -
+    const ratingClasses = {
+      base: "flex items-center flex-wrap",
+      size: {
+        md: "gap-x-3 max-lg:gap-x-2 max-md:gap-x-1",
+        lg: "gap-x-4",
+      }
+    };
+
+    const quantityClasses = {
+      size: {
+        md: "",
+        lg: "text-sm max-md:text-xs"
+      }
+    };
+
+    const ratingSizeClass = ratingClasses.size[options.size ?? "md"];
+    const quantitySizeClass = quantityClasses.size[options.size ?? "md"];
+
+  div(class=ratingClasses.base, class=ratingSizeClass)
+    +stars(content.stars, { size: options.size })
+
+    div(class=quantitySizeClass)
+      = content.rating
+      span(class="text-text-primary/60") /5

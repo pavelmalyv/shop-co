@@ -1,0 +1,64 @@
++section
+  +container
+    div(class="flex gap-10 max-lg:flex-col max-md:gap-y-5")
+      div(
+        class="md:h-139 flex gap-3 lg:flex-[--spacing(152)] min-w-0 max-md:flex-col-reverse overflow-hidden",
+        data-js-product-sliders
+      )
+        div(
+          class="swiper md:flex-[0_1_--spacing(38)] md:-my-1.5! max-md:-mx-1.5! max-md:w-[calc(100%_+_--spacing(3))] max-md:h-26",
+          data-js-product-preview-slider
+        )
+          div(class="swiper-wrapper")
+            - for (let i = 0; i < 6; i++)
+              div(class="swiper-slide md:py-1.5 max-md:px-1.5 group")
+                div(
+                  class="w-full h-full rounded-sm overflow-hidden border-1 border-bg-light-quaternary transition-colors group-[&.swiper-slide-thumb-active]:border-border-primary bg-bg-light-quaternary"
+                )
+                  +img(
+                    src="img/products/card/t-shirt-preview1.webp",
+                    width="304",
+                    height="334",
+                    class="w-full h-full object-contain"
+                  )
+        div(
+          class="swiper md:flex-[--spacing(111)] rounded-sm bg-bg-light-quaternary max-md:w-full max-md:h-72",
+          data-js-product-main-slider
+        )
+          div(class="swiper-wrapper")
+            - for (let i = 0; i < 6; i++)
+              div(class="swiper-slide")
+                +img(
+                  src="img/products/card/t-shirt1.webp",
+                  width="888",
+                  height="974",
+                  class="w-full h-full object-contain"
+                )
+      div(class="lg:flex-[--spacing(148)]")
+        div(class="space-y-3 mb-6 max-md:mb-5")
+          h1(class="heading-sm")
+            | Футболка с лентами
+          +rating({ stars: [true, true, true, true, false], rating: "4.5" }, { size: "lg" })
+          +price({ price: "2 600", oldPrice: "3 000", discountPercent: "40", size: "lg" })
+        div(class="text-text-primary/60 leading-1.375 mb-6")
+          | Эта футболка с&nbsp;принтом идеально подходит для&nbsp;любого случая. Она выполнена из&nbsp;мягкой и&nbsp;дышащей ткани, обеспечивая высокий комфорт.
+        form
+          +fieldset-border("Выберите цвет")
+            -
+              const colorOptions = [
+                { value: "#4F4631", ariaLabel: "Оливково-коричневый", checked: true },
+                { value: "#314F4A", ariaLabel: "Глубокий хвойный" },
+                { value: "#31344F", ariaLabel: "Тёмно-индиговый" },
+              ];
+            +color-options("color", colorOptions)
+          +fieldset-border("Выберите размер")
+            -
+              const textOptions = [
+                { value: "S", checked: true },
+                { value: "M" },
+                { value: "L" },
+                { value: "XL" },
+              ];
+            +text-options("size", textOptions)
+
+          +add-cart("quantity-cart")

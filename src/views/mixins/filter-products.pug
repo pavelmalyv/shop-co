@@ -1,0 +1,45 @@
+mixin filter-products(id)
+  div(class="flex items-start justify-between gap-x-4 mb-6")
+    h2(class="text-xl font-bold")
+      | Фильтр
+    block
+  form(class="space-y-6 max-md:space-y-5")
+    +accordion(id)
+      +accordion-item({ accordionId: id, id: "price", title: "Цена" })
+        div(data-js-range, data-min="0", data-max="20000")
+          div(class="py-2")
+            div(data-js-range-slider)
+          div(class="flex flex-wrap gap-1 items-center justify-between mt-1")
+            div(data-js-range-min-value)
+            div(data-js-range-max-value)
+      +accordion-item({ accordionId: id, id: "color", title: "Цвет" })
+        -
+          const colorOptions = [
+            { value: "#00c12b", ariaLabel: "Зеленый" },
+            { value: "#F50606", ariaLabel: "Красный" },
+            { value: "#F5DD06", ariaLabel: "Жёлтый" },
+            { value: "#F57906", ariaLabel: "Оранжевый" },
+            { value: "#06CAF5", ariaLabel: "Голубой" },
+            { value: "#063AF5", ariaLabel: "Синий" },
+            { value: "#7D06F5", ariaLabel: "Фиолетовый" },
+            { value: "#F506A4", ariaLabel: "Розовый" },
+            { value: "#999999", ariaLabel: "Серый" },
+            { value: "#000000", ariaLabel: "Черный" },
+          ];
+        +color-options("color", colorOptions, { isMultiple: true, isBorder: true })
+      +accordion-item({ accordionId: id, id: "size", title: "Размер" })
+        -
+          const textOptions = [
+            { value: "XSS" },
+            { value: "XS" },
+            { value: "S" },
+            { value: "M" },
+            { value: "L" },
+            { value: "XL" },
+            { value: "XXL" },
+            { value: "3XL" },
+            { value: "4XL" },
+          ];
+        +text-options("color", textOptions, { isMultiple: true })
+    +button({ full: "true" })
+      | Применить фильтр

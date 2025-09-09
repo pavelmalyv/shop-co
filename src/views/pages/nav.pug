@@ -1,0 +1,18 @@
+extends ../layouts/default
+
+block title
+  | Навигация
+block content
+  +breadcrumbs([{ label: "Главная", href: BASE_PATCH }, { label: "Навигация" }])
+
+  +section
+    +container
+      div(class="flex flex-col gap-y-2")
+        +button-link(href=BASE_PATCH)
+          | Главная
+        +button-link(href="product")
+          | Карточка товара
+        +button-link(href="catalog")
+          | Каталог
+        +button-link(href="cart")
+          | Корзина

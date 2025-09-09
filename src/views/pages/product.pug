@@ -1,0 +1,10 @@
+extends ../layouts/default
+
+block title
+  | Футболка с лентами
+block content
+  +breadcrumbs([{ label: "Главная", href: BASE_PATCH }, { label: "Каталог", href: "#" }, { label: "Мужчины", href: "#" }, { label: "Футболки" }])
+
+  include ../partials/screens/product
+  include ../partials/screens/product-reviews
+  include ../partials/screens/related-products

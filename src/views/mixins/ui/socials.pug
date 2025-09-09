@@ -1,0 +1,11 @@
+mixin socials(content)
+  ul(class="flex flex-wrap gap-x-2 gap-y-3")
+    each item in content
+      li
+        a(
+          href=item.href,
+          target="_blank",
+          aria-label=item.ariaLabel,
+          class="flex items-center justify-center w-7 aspect-square border-1 text-xs border-border-primary/20 rounded-full transition-colors app-hover:bg-bg-dark-primary app-hover:text-text-secondary app-hover:border-border-primary"
+        )
+          +icon(item.icon)

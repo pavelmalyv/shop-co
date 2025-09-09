@@ -1,0 +1,22 @@
++section
+  +container
+    div(
+      class="py-18 max-xl:py-14 max-md:pt-10 max-md:pb-7 px-16 max-xl:px-8 max-md:px-6 rounded-md max-lg:rounded-sm bg-bg-light-secondary"
+    )
+      +heading
+        | Стили одежды
+      ul(class="[--gap-x:--spacing(5)] flex flex-wrap gap-y-5 max-md:gap-y-4 gap-x-(--gap-x)")
+        -
+          const listStyles = [
+            { bg: BASE_PATCH + "/img/styles/casual.webp", label: "Кэжуал" },
+            { bg: BASE_PATCH + "/img/styles/formal.webp", label: "Деловой" },
+            { bg: BASE_PATCH + "/img/styles/party.webp", label: "Вечеринка" },
+            { bg: BASE_PATCH + "/img/styles/gum.webp", label: "Спорт" },
+          ];
+
+        each item in listStyles
+          li(
+            style=`--bg-url: url('${item.bg}')`,
+            class="[--flex-md:1_1_calc(62%_-_calc(var(--gap-x)_/_2))] max-lg:[--flex-md:1_1_100%] [--flex-sm:1_1_calc(38%_-_calc(var(--gap-x)_/_2))] max-lg:[--flex-sm:1_1_100%] min-h-72 max-xl:min-h-65 max-lg:min-h-59 max-md:min-h-47 py-6 max-xl:py-5 max-md:py-4 px-9 max-xl:px-7 max-md:px-6 nth-[4n+1]:flex-(--flex-sm) nth-[4n+4]:flex-(--flex-sm) nth-[4n+2]:flex-(--flex-md) nth-[4n+3]:flex-(--flex-md) text-4xl max-xl:text-3xl max-md:text-2xl font-bold rounded-sm bg-bg-light-primary bg-(image:--bg-url) [--bg-position-sm:right_-4rem_center] max-lg:[--bg-position-sm:right] max-sm:[--bg-position-sm:right_-4rem_center] [--bg-position-md:right] max-lg:[--bg-position-md:right_-3.4rem_center] max-sm:[--bg-position-md:right_-8.4rem_center] nth-[4n+1]:bg-position-(--bg-position-sm) nth-[4n+4]:bg-position-(--bg-position-sm) nth-[4n+2]:bg-position-(--bg-position-md) nth-[4n+3]:bg-position-(--bg-position-md) bg-size-[auto_100%] bg-no-repeat"
+          )
+            = item.label

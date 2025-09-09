@@ -1,0 +1,44 @@
+mixin color-options(name, content, options = {})
+  -
+    const circleClasses = {
+      base: "[--visibility:hidden] peer-checked:[--visibility:visible] group relative block w-10 aspect-square rounded-full bg-(--bg) peer-focus-visible:outline-2 outline-accent-primary",
+      isBorder: {
+        false: "",
+        true: "inset-ring-2 inset-ring-border-primary/20",
+      }
+    };
+
+    const circleBorderClass = circleClasses.isBorder[options.isBorder ?? "false"];
+
+  div(class="flex flex-wrap gap-4 max-md:gap-3")
+    each item in content
+      label
+        input(
+          type=options.isMultiple ? "checkbox" : "radio",
+          name=name,
+          value=item.value,
+          aria-label=item.ariaLabel,
+          checked=item.checked,
+          class="peer sr-only"
+        )
+        span(style=`--bg: ${item.value}`, class=circleClasses.base, class=circleBorderClass)
+          span(
+            class="[visibility:var(--visibility)] absolute top-1/2 left-1/2 -translate-1/2 text-text-secondary transition-[opacity,_visibility] not-has-group-peer-checked:opacity-0 text-base"
+          )
+            +icon("accept")
+
+mixin text-options(name, content, options = {})
+  div(class="flex flex-wrap gap-3 max-md:gap-2")
+    each item in content
+      label
+        input(
+          type=options.isMultiple ? "checkbox" : "radio",
+          name=name,
+          value=item.value,
+          checked=item.checked,
+          class="peer sr-only"
+        )
+        span(
+          class="flex items-center justify-center text-center min-h-12 max-md:min-h-10 py-2 px-6 max-md:px-5 bg-bg-light-secondary rounded-full text-text-primary/60 transition-colors peer-checked:text-text-secondary peer-checked:bg-bg-dark-primary peer-focus-visible:outline-2 outline-accent-primary"
+        )
+          = item.value

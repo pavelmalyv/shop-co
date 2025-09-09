@@ -1,0 +1,1 @@
+export { CategorySliderCollection } from "./CategorySlider";

@@ -1,0 +1,10 @@
+mixin pagination(content)
+  ul(class="flex items-center md:gap-x-0.5 max-md:-order-1 max-md:flex-[0_0_100%] max-md:justify-center")
+    each item in content
+      li
+        a(
+          href=item.href,
+          aria-current=item.isCurrent ? "page" : undefined,
+          class="w-10 max-md:w-9 aspect-square inline-flex items-center justify-center text-sm max-md:text-xs font-medium not-[[aria-current]]:text-text-primary/50 [[aria-current]]:bg-bg-dark-primary/6 rounded-2xs app-hover:text-text-primary transition-colors"
+        )
+          = item.label

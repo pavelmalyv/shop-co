@@ -1,0 +1,80 @@
++section
+  div(class="overflow-hidden bg-bg-light-tertiary max-lg:pt-12 max-md:pt-10")
+    +container
+      div(class="flex items-center justify-between gap-x-10 max-lg:flex-col max-lg:gap-y-18 max-md:gap-y-6")
+        div(class="lg:py-12 lg:flex-[0_1_--spacing(149)] max-lg:flex max-lg:flex-col max-lg:items-center")
+          div(
+            class="md:space-y-8 mb-12 max-md:mb-5 max-lg:flex max-lg:flex-col items-start md:max-lg:items-center"
+          )
+            h1(class="heading-lg md:max-lg:text-center max-md:mb-5")
+              | Найдите одежду под ваш&nbsp;стиль
+            div(
+              class="text-text-primary/40 leading-[1.375] md:max-lg:text-center max-lg:max-w-167 max-md:mb-6"
+            )
+              | Просмотрите наш&nbsp;разнообразный ассортимент тщательно созданной одежды, призванной подчеркнуть вашу индивидуальность.
+            +button({ full: "maxMd" })
+              | Каталог
+          ul(
+            class="grid grid-cols-[repeat(3,_auto)] max-xl:grid-cols-[repeat(2,_auto)] gap-x-(--spacing-y) max-xl:gap-y-5 max-sm:gap-y-3 [--spacing-y:--spacing(8)] max-sm:[--spacing-y:--spacing(6)]"
+          )
+            -
+              const listNumbers = [
+                { number: "200+", description: "Брендов" },
+                { number: "2,000+", description: "Товаров" },
+                { number: "30,000+", description: "Покупателей" },
+              ];
+
+            each item in listNumbers
+              li(
+                class="xl:not-last:pr-(--spacing-y) xl:not-last:border-r-1 max-xl:not-last:not-nth-[2n]:pr-(--spacing-y) max-xl:not-last:not-nth-[2n]:border-r-1 border-text-primary/10 max-lg:last:col-span-full max-lg:last:flex max-lg:last:justify-center"
+              )
+                div(class="space-y-2 max-md:space-y-1 max-sm:space-y-0")
+                  div(class="text-5xl max-md:text-3xl max-sm:text-2xl font-bold") 
+                    = item.number
+                  div(class="text-text-primary/60 leading-[1.375] max-sm:text-xs")
+                    = item.description
+        div(
+          class="lg:self-end relative lg:mt-17 lg:-mr-7 lg:flex-[0_1_--spacing(155)] max-lg:w-full max-lg:max-w-140 max-sm:flex max-sm:justify-center"
+        )
+          +img(
+            class="w-full max-sm:w-[117%] max-sm:max-w-[117%]",
+            src="img/hero/main.webp",
+            width="1242",
+            height="1244",
+            loading="eager"
+          )
+          +img(
+            class="absolute top-[7.2%] right-[1.7%] w-[16.7%]",
+            src="img/hero/star.svg",
+            width="104",
+            height="104"
+          )
+          +img(
+            class="absolute top-[41.1%] left-0 w-[9%]",
+            src="img/hero/star.svg",
+            width="104",
+            height="104"
+          )
+  div(class="py-10 bg-bg-dark-primary")
+    +container
+      ul(
+        class="flex items-center justify-between max-md:justify-center gap-x-12 max-md:gap-x-8 max-md:gap-y-5 max-md:flex-wrap"
+      )
+        -
+          const listLogos = [
+            { src: "img/hero/versace-logo.svg", width: "167", height: "34" },
+            { src: "img/hero/zara-logo.svg", width: "92", height: "38" },
+            { src: "img/hero/gucci-logo.svg", width: "157", height: "36" },
+            { src: "img/hero/prada-logo.svg", width: "195", height: "32" },
+            { src: "img/hero/calvin-klein-logo.svg", width: "208", height: "34" },
+          ];
+
+        each item in listLogos
+          li
+            +img(
+              src=item.src,
+              width=item.width,
+              height=item.height,
+              loading="lazy",
+              class="max-h-9 max-md:max-h-5 h-full w-auto"
+            )

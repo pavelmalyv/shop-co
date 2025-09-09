@@ -1,0 +1,1 @@
+export { NewsletterCollection } from "./Newsletter";

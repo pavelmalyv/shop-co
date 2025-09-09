@@ -1,0 +1,15 @@
+mixin review-card(content)
+  article(class="flex flex-col h-full py-7 px-8 max-md:p-6 border-1 border-border-primary/10 rounded-sm")
+    div(class="mb-4 max-md:mb-3")
+      +stars(content.stars, { size: "lg" }) 
+    div(class="flex items-center gap-y-1 mb-3 max-md:mb-2")
+      h3(class="font-bold text-xl max-md:text-base leading-[1.1]")
+        = content.author
+      div(class="text-accent-secondary text-2xl max-md:text-xl")
+        +icon("checkmark")
+    div(class="leading-[1.375] text-text-primary/60")
+      = content.review
+
+    if content.posted
+      div(class="mt-auto pt-6 max-md:pt-4 text-text-primary/60 font-medium leading-[1.375]")
+        | Опубликовано: #{ content.posted }

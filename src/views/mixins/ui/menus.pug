@@ -1,0 +1,30 @@
+mixin menu(content, options = {})
+  -
+    const navClasses = {
+      base: "flex",
+      isVertical: {
+        true: "flex-col items-center gap-y-6",
+        false: "flex-wrap items-center justify-center gap-x-6 gap-y-1"
+      }
+    }
+
+    const navVerticalClass = navClasses.isVertical[options.isVertical ?? "false"];
+
+  nav
+    ul(class=navClasses.base, class=navVerticalClass)
+      each item in content
+        - const { label, ...attrs } = item;
+        li
+          a(class="transition-colors app-hover:text-accent-primary")&attributes(attrs)
+            = label
+
+mixin menu-columns(content)
+  each column in content
+    div
+      div(class="mb-6 max-md:mb-4 font-medium uppercase tracking-wide leading-[1.125]")
+        = column.title
+      ul(class="space-y-5 max-md:space-y-4")
+        each item in column.list
+          li
+            a(href=item.href, class="text-text-primary/60 transition-colors app-hover:text-accent-primary")
+              = item.label
