@@ -8,7 +8,7 @@ class Range {
   #selectors = {
     slider: "[data-js-range-slider]",
     minValue: "[data-js-range-min-value]",
-    maxValue: "[ data-js-range-max-value]",
+    maxValue: "[data-js-range-max-value]",
   };
 
   #rootAttributes = {
