@@ -1,0 +1,179 @@
+@import "tailwindcss";
+@import "flowbite/src/themes/default";
+@plugin "flowbite/plugin";
+@source "../node_modules/flowbite";
+
+@import "@fontsource/montserrat/900.css";
+@import "@fontsource/plus-jakarta-sans/400.css";
+@import "@fontsource/plus-jakarta-sans/500.css";
+@import "@fontsource/plus-jakarta-sans/700.css";
+
+@import "swiper/css";
+@import "nouislider/dist/nouislider";
+
+@theme {
+  --color-*: initial;
+
+  --color-accent-primary: #ffc633;
+  --color-accent-secondary: #01ab31;
+
+  --color-text-primary: #000000;
+  --color-text-secondary: #ffffff;
+  --color-text-tertiary: #999999;
+
+  --color-bg-dark-primary: #000000;
+  --color-bg-light-primary: #ffffff;
+  --color-bg-light-secondary: #f0f0f0;
+  --color-bg-light-tertiary: #f2f0f1;
+  --color-bg-light-quaternary: #f0eeed;
+
+  --color-border-primary: #000000;
+  --color-border-secondary: #d6dce5;
+
+  --color-fill-primary: #f2f0f1;
+  --color-warning-primary: #ff3333;
+
+  --font-primary: "Plus Jakarta Sans", sans-serif;
+  --font-secondary: "Montserrat", sans-serif;
+
+  --text-xs--line-height: initial;
+  --text-sm--line-height: initial;
+  --text-base--line-height: initial;
+  --text-lg--line-height: initial;
+  --text-xl--line-height: initial;
+  --text-2xl--line-height: initial;
+  --text-3xl--line-height: initial;
+  --text-4xl--line-height: initial;
+  --text-5xl--line-height: initial;
+  --text-6xl--line-height: initial;
+  --text-7xl--line-height: initial;
+  --text-8xl--line-height: initial;
+  --text-9xl--line-height: initial;
+
+  --text-2xs: 0.625rem;
+  --text-3xl: 2rem;
+  --text-5xl: 2.5rem;
+  --text-6xl: 3rem;
+  --text-7xl: 4rem;
+  --text-8xl: initial;
+  --text-9xl: initial;
+
+  --radius-*: initial;
+  --radius-3xs: 0.3125rem;
+  --radius-2xs: 0.5rem;
+  --radius-xs: 0.8125rem;
+  --radius-sm: 1.25rem;
+  --radius-md: 2.5rem;
+  --radius-lg: 3.875rem;
+
+  --z-base: 0;
+  --z-layer-1: 100;
+  --z-layer-2: 200;
+  --z-layer-3: 300;
+  --z-layer-4: 400;
+  --z-layer-5: 500;
+  --z-header: 1000;
+  --z-modal: 1100;
+
+  --tracking-wide: 0.19em;
+  --duration-md: 300ms;
+
+  --ease-in: ease-in;
+  --ease-out: ease-out;
+  --ease-in-out: ease-in-out;
+  --default-transition-timing-function: var(--ease-out);
+
+  --breakpoint-2xl: 83rem;
+  --breakpoint-3xl: 96rem;
+
+  --container-padding-x: calc(10 * var(--spacing));
+  --container-width: calc(var(--spacing) * 310);
+}
+
+@layer base {
+  /* max-lg */
+  @media (width < 64rem) {
+    :root {
+      --container-padding-x: calc(8 * var(--spacing));
+    }
+  }
+
+  /* max-md */
+  @media (width < 48rem) {
+    :root {
+      --container-padding-x: calc(4 * var(--spacing));
+    }
+  }
+
+  html {
+    scrollbar-gutter: stable;
+  }
+
+  body {
+    @apply flex flex-col min-h-full min-w-[320px] font-(family-name:--font-primary) text-base/tight max-md:text-sm text-text-primary bg-bg-light-primary;
+  }
+
+  main {
+    @apply grow-1;
+  }
+}
+
+@layer components {
+  .heading-lg {
+    @apply font-(family-name:--font-secondary) text-7xl max-xl:text-6xl max-lg:text-5xl max-md:text-4xl leading-none font-bold uppercase;
+  }
+
+  .heading-md {
+    @apply font-(family-name:--font-secondary) text-6xl max-xl:text-5xl max-lg:text-4xl max-md:text-3xl leading-none font-bold uppercase;
+  }
+
+  .heading-sm {
+    @apply font-(family-name:--font-secondary) text-5xl max-lg:text-4xl max-md:text-2xl leading-[1.125] font-bold uppercase;
+  }
+
+  @layer range {
+    .noUi-target {
+      @apply px-2.5!;
+
+      &.noUi-horizontal {
+        @apply h-1.5! border-0! rounded-sm! bg-bg-light-secondary! shadow-none!;
+      }
+
+      .noUi-connect {
+        @apply bg-bg-dark-primary!;
+      }
+
+      .noUi-handle {
+        @apply w-5! h-5! border-0! shadow-none! bg-bg-dark-primary! -top-1.75! -right-2.5! rounded-full! before:hidden! after:hidden!;
+      }
+    }
+  }
+}
+
+@custom-variant app-hover {
+  @media (hover: hover) {
+    &:hover {
+      @slot;
+    }
+  }
+
+  @media (hover: none) {
+    &:active {
+      @slot;
+    }
+  }
+}
+
+@custom-variant app-not-hover {
+  @media (hover: hover) {
+    &:not(:hover) {
+      @slot;
+    }
+  }
+
+  @media (hover: none) {
+    &:not(:active) {
+      @slot;
+    }
+  }
+}

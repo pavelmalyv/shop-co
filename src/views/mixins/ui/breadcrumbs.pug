@@ -1,0 +1,17 @@
+mixin breadcrumbs(content)
+  +container
+    nav(class="mt-6 max-md:mt-5")
+      ul(class="flex flex-wrap gap-x-3 max-md:gap-x-2 gap-y-1")
+        each item in content
+          li
+            if item.href
+              div(class="flex items-center gap-x-2 max-md:gap-x-1")
+                a(
+                  href=item.href,
+                  class="text-text-primary/60 transition-colors app-hover:text-text-primary"
+                )
+                  = item.label
+                div(class="text-text-primary/60")
+                  +icon("forward-right")
+            else
+              = item.label

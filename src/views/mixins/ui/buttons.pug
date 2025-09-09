@@ -1,0 +1,108 @@
+mixin button-base
+  if attributes.href
+    a&attributes(attributes)
+      block
+  else
+    button(type="button")&attributes(attributes)
+      block
+
+mixin button(options = {})
+  -
+    const buttonClasses = {
+      base: "py-2 px-6 inline-flex items-center justify-center gap-x-3 rounded-lg text-center font-medium transition-[background-color,_color,_opacity] app-hover:bg-accent-primary app-hover:text-bg-dark-primary disabled:opacity-50 disabled:pointer-events-none",
+      color: {
+        dark: "bg-bg-dark-primary text-text-secondary",
+        light: "bg-bg-light-primary text-text-primary",
+      },
+      size: {
+        md: "min-h-13",
+        sm: "min-h-12 max-md:min-h-11",
+      },
+      full: {
+        true: "w-full",
+        false: "",
+        maxMd: "max-md:w-full",
+      },
+      isShort: {
+        true: "",
+        false: "min-w-52"
+      }
+    }
+
+    const buttonVariantClass = [
+      buttonClasses.base,
+      buttonClasses.color[options.color ?? "dark"],
+      buttonClasses.size[options.size ?? "md"],
+      buttonClasses.full[options.full ?? "false"],
+      buttonClasses.isShort[options.isShort ?? "false"]
+    ]
+
+  +button-base(class=buttonVariantClass)&attributes(attributes)
+    block
+
+mixin button-link
+  +button-base(class="font-medium app-not-hover:underline [text-decoration-skip-ink:none]")&attributes(attributes)
+    block
+
+mixin button-icon(iconName, options = {})
+  -
+    const buttonClasses = {
+      base: "aspect-square transition-colors",
+      size: {
+        md: "text-2xl",
+        sm: "text-xl",
+      },
+      hover: {
+        accent: "app-hover:text-accent-primary",
+        dark: "app-hover:text-text-primary"
+      },
+    }
+
+    const buttonSizeClass = buttonClasses.size[options.size ?? "md"];
+    const buttonHoverClass = buttonClasses.hover[options.hover ?? "accent"];
+
+  +button-base(class=buttonClasses.base, class=buttonSizeClass, class=buttonHoverClass)&attributes(attributes)
+    +icon(iconName)
+
+mixin button-icon-fill(iconName)
+  +button-base(
+    class="md:w-11 max-md:w-8 aspect-square inline-flex items-center justify-center bg-bg-light-secondary rounded-full app-hover:bg-bg-dark-primary app-hover:text-text-secondary transition-colors text-xl max-md:text-base"
+  )&attributes(attributes)
+    +icon(iconName)
+
+mixin button-border(options = {})
+  -
+    const buttonClasses = {
+      base: "min-w-52 py-2 px-6 inline-flex items-center justify-center border-1 border-border-primary/10 rounded-lg text-center font-medium transition-[border,_opacity] app-hover:border-border-primary disabled:opacity-50 disabled:pointer-events-none",
+      full: {
+        true: "w-full",
+        false: "",
+        maxMd: "max-md:w-full",
+      },
+      size: {
+        md: 'min-h-13',
+        sm: 'min-h-12 max-md:min-h-11',
+      },
+    };
+
+    const buttonFullClass = buttonClasses.full[options.full ?? "false"];
+    const buttonSizeClass = buttonClasses.size[options.size ?? "md"];
+
+  +button-base(class=buttonClasses.base, class=buttonFullClass, class=buttonSizeClass)&attributes(attributes)
+    block
+
+mixin button-text-icon(iconName, options = {})
+  -
+    const buttonClasses = {
+      base: "inline-flex items-center px-4 max-md:px-3 py-1 gap-x-2 min-h-9 border-1 border-border-primary/10 rounded-2xs app-hover:border-border-primary transition-colors disabled:opacity-50 disabled:pointer-events-none max-md:text-xs",
+      alignIcon: {
+        left: "",
+        right: "flex-row-reverse",
+      }
+    };
+
+    const buttonAlignIconClass = buttonClasses.alignIcon[options.alignIcon ?? "left"];
+
+  +button-base(class=buttonClasses.base, class=buttonAlignIconClass)&attributes(attributes)
+    +icon(iconName)
+    block

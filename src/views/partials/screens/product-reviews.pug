@@ -1,0 +1,36 @@
++section
+  +container
+    div(
+      class="flex md:items-center justify-between flex-wrap gap-x-5 gap-y-4 mb-6 max-md:mb-5 max-md:flex-col"
+    )
+      div(class="flex items-end gap-x-2")
+        h2(class="text-2xl max-md:text-xl font-bold")
+          | Отзывы
+        span(class="text-text-primary/60 leading-[1.375]")
+          | (451)
+
+      div(class="flex items-start gap-x-2 gap-y-3 max-md:flex-wrap")
+        div(class="flex-1 min-w-48 relative")
+          -
+            const select = {
+              ariaLabel: "Сортировать",
+              name: "sort",
+              options: [
+                { value: "date|desc", label: "Сначала новые" },
+                { value: "date|ask", label: "Сначала старые" },
+              ],
+            };
+          +select(select)
+          div(class="absolute top-1/2 right-5 -translate-y-1/2 text-base")
+            +icon("forward-bottom")
+        div(class="flex-1")
+          +button({ size: "sm", full: "maxMd" })
+            | Написать отзыв
+
+    ul(class="grid grid-cols-2 max-md:grid-cols-1 gap-5 max-md:gap-4 mb-9 max-md:mb-5")
+      - for (let i = 0; i < 6; i++)
+        li
+          +review-card(REVIEW_CARD_POSTED)
+    div(class="flex justify-center")
+      +button-border
+        | Загрузить ещё

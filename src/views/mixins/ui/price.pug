@@ -1,0 +1,31 @@
+mixin price(content, options = {})
+  -
+    const priceClasses = {
+      base: "flex flex-wrap items-center gap-y-1 font-bold",
+      size: {
+        md: "gap-x-2 max-md:gap-x-1 text-2xl max-md:text-xl",
+        lg: "gap-x-4 max-md:gap-x-3 text-3xl max-md:text-2xl",
+      },
+    };
+
+    const discountClasses = {
+      base: "flex items-center justify-center rounded-full font-medium text-center text-warning-primary bg-warning-primary/10",
+      size: {
+        md: "min-h-7 max-md:min-h-5 min-w-14 max-md:min-w-10 p-1 text-xs max-md:text-2xs",
+        lg: "min-h-8 min-w-18 max-md:min-w-16 px-3 py-2 text-base max-md:text-sm"
+      }
+    }
+
+    const priceSizeClass = priceClasses.size[options.size ?? "md"];
+    const discountSizeClass = discountClasses.size[options.size ?? "md"];
+
+  div(class=priceClasses.base, class=priceSizeClass)
+    div
+      | #{ content.price } ₽
+    if content.oldPrice
+      del(class="text-text-tertiary")
+        | #{ content.oldPrice } ₽
+
+    if content.discountPercent
+      div(class=discountClasses.base, class=discountSizeClass)
+        | -#{ content.discountPercent }%

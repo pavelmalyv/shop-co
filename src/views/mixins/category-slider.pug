@@ -1,0 +1,19 @@
+mixin category-slider(content, options = {})
+  +section
+    <div class="overflow-hidden">
+      +container
+        +heading
+          = content.title
+        div(class="max-xl:-mx-(--container-padding-x) mb-9 max-md:mb-6")
+          div(
+            class="swiper -mx-2.5! max-md:-mx-2! max-xl:px-(--container-padding-x)!",
+            data-js-category-slider
+          )
+            div(class="swiper-wrapper h-auto!")
+              each slide in content.slides
+                div(class="swiper-slide px-2.5 max-md:px-2!")
+                  +product-card({ title: slide.title, img: slide.img, stars: slide.stars, rating: slide.rating, price: slide.price, oldPrice: slide.oldPrice, discountPercent: slide.discountPercent })
+        if options.isMoreButton
+          div(class="flex flex-col items-center")
+            +button-border({ full: "maxMd" })
+              | Смотреть все

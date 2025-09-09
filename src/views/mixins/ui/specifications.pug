@@ -1,0 +1,8 @@
+mixin specifications(list)
+  dl(class="mb-2 space-y-1")
+    each item in list
+      div(class="text-sm max-md:text-sm")
+        dt(class="inline-flex")
+          = item.title + ":"
+        dd(class="inline-flex text-text-primary/60")
+          = item.value

@@ -1,0 +1,7 @@
+mixin add-cart(id)
+  div(class="group inline-flex mt-6 relative", data-js-add-cart)
+    div(class="absolute top-0 left-0 min-w-full not-group-[&.is-active]:hidden", data-js-add-cart-quantity)
+      +quantity-field(id, { min: "0", max: "100" })
+    div(class="group-[&.is-active]:invisible")
+      +button(data-js-add-cart-button="")
+        | Добавить в&nbsp;корзину

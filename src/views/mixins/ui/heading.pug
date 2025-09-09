@@ -1,0 +1,19 @@
+mixin heading(options = {})
+  -
+    const headingClasses = {
+      base: "heading-md",
+      align: {
+        center: "text-center",
+        left: "text-left",
+      },
+      size: {
+        md: "mb-14 max-lg:mb-11 max-md:mb-8",
+        sm: "mb-6 max-md:mb-5",
+      },
+    };
+
+    const headingAlignClass = headingClasses.align[options.align ?? "center"];
+    const headingSizeClass = headingClasses.size[options.size ?? "md"];
+
+  #{options.tag === 'h1' ? 'h1' : 'h2'}(class=headingClasses.base, class=headingAlignClass, class=headingSizeClass)
+    block

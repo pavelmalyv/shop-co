@@ -1,0 +1,21 @@
+mixin select(content)
+  label(aria-label=content.ariaLabel)
+    select(
+      name=content.name,
+      class="w-full pl-5 pr-10 h-12 max-md:h-11 border-0 rounded-full bg-bg-light-secondary appearance-none bg-none outline-accent-primary outline-offset-0 focus-visible:outline-2 focus-visible:outline-solid"
+    )
+      each option in content.options
+        option(value=option.value)
+          = option.label
+
+mixin select-text(content)
+  label(class="inline-flex items-center gap-x-2 gap-y-0.5 flex-wrap")
+    span(class="text-text-primary/60")
+      = content.label
+    span(class="flex items-center gap-x-1")
+      select(name=content.name, class="w-36 p-0 border-0 bg-transparent appearance-none bg-none")
+        each option in content.options
+          option(value=option.value) 
+            = option.label
+      span(class="text-base") 
+        +icon("forward-bottom")

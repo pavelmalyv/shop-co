@@ -1,0 +1,34 @@
+header(class="sticky top-0 left-0 w-full z-(--z-header)")
+  div(class="bg-bg-dark-primary text-text-secondary text-sm py-2.5", data-js-top-banner)
+    +container
+      div(class="grid md:grid-cols-[1fr_auto_1fr] gap-x-4 items-center")
+        div(class="max-md:hidden")
+        div(class="text-center") 
+          | Зарегистрируйтесь и получите 20&nbsp;% скидку на&nbsp;первый заказ.
+          |
+          +button-link(href="#") Зарегистрироваться
+        div(class="flex justify-end max-md:hidden")
+          +button-icon("close", { size: "sm" })(
+            aria-label="Закрыть",
+            data-js-top-banner-close-button
+          )
+  div(class="border-b-1 bg-bg-light-primary border-bg-light-tertiary")
+    +container
+      div(class="flex items-center justify-between py-6 max-md:py-5 gap-x-10 max-md:gap-x-5")
+        div(class="flex items-center gap-x-4")
+          div(class="xl:hidden max-xl:flex")
+            +button-icon("burger")(
+              aria-label="Меню",
+              data-modal-target=ID_MODAL_HEADER,
+              data-modal-show=ID_MODAL_HEADER
+            )
+          +logo
+        div(class="xl:contents max-xl:hidden")
+          +menu(TOP_MENU_DATA)
+          form(class="flex-[1_0_--spacing(50)]")
+            +text-field({ icon: "magnifier" })(name="search", placeholder="Поиск товаров...")
+        div(class="flex gap-x-4 max-md:gap-x-3")
+          div(class="xl:hidden")
+            +button-icon("magnifier")(href="#", aria-label="Поиск")
+          +button-icon("cart")(href="#", aria-label="Корзина")
+          +button-icon("account")(href="#", aria-label="Профиль")

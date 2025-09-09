@@ -1,0 +1,9 @@
+extends ../layouts/default
+
+block title
+  | Каталог
+block content
+  +breadcrumbs([{ label: "Главная", href: BASE_PATCH }, { label: "Кэжуал" }])
+
+  include ../partials/screens/catalog
+  include ../partials/modals/catalog-filter

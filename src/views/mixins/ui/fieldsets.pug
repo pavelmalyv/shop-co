@@ -1,0 +1,7 @@
+mixin fieldset-border(legend)
+  fieldset(class="py-6 border-b-1 first:border-t-1 border-border-primary/10")
+    legend(class="sr-only")
+      = legend
+    div(aria-hidden="true", class="mb-4 text-text-primary/60")
+      = legend
+    block

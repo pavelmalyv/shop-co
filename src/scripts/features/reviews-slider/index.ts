@@ -1,0 +1,1 @@
+export { ReviewsSliderCollection } from "./ReviewsSlider";

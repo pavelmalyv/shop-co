@@ -1,0 +1,16 @@
+mixin stars(stars, options = {})
+  -
+    const starsClasses = {
+      base: "flex text-accent-primary",
+      size: {
+        md: "gap-x-1 text-xl max-md:text-base",
+        lg: "gap-x-2 text-2xl max-md:text-xl",
+      }
+    }
+
+    const starsSizeClass = starsClasses.size[options.size ?? "md"];
+
+  div(class=starsClasses.base, class=starsSizeClass)
+    each star in stars
+      div(class=(star ? undefined : "w-[0.5em] overflow-hidden"))
+        +icon("star")

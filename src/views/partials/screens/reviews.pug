@@ -1,0 +1,22 @@
++section
+  div(class="overflow-hidden")
+    +container
+      div(class="flex justify-between items-end gap-x-5 mb-14 max-lg:mb-11 max-md:mb-8")
+        h2(class="heading-lg") 
+          | Отзывы
+        div(class="flex gap-x-4")
+          +button-icon("arrow-prev")(aria-label="Предыдущий слайд", data-js-reviews-prev-button)
+          +button-icon("arrow-next")(
+            aria-label="Следующий слайд",
+            data-js-reviews-next-button
+          )
+    div(
+      class="swiper flex! [--gap-x:--spacing(5)] max-md:[--gap-x:--spacing(4)] -mx-[calc(var(--gap-x)_/_2)]! max-2xl:px-(--container-padding-x)!",
+      data-js-reviews-slider
+    )
+      div(class="swiper-wrapper h-[initial]! min-h-1")
+        - for (let i = 0; i < 10; i++)
+          div(
+            class="swiper-slide px-[calc(var(--gap-x)_/_2)] 2xl:w-[calc((var(--container-width)_+_var(--gap-x))_/3)]! 2xl:not-[[class~='swiper-slide-active'],[class~='swiper-slide-prev'],[class~='swiper-slide-next']]:blur-xs"
+          )
+            +review-card(REVIEW_CARD)

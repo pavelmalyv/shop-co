@@ -1,0 +1,53 @@
++section
+  +container
+    div(class="flex items-start gap-x-5")
+      aside(
+        class="flex-[--spacing(78)] min-w-68 px-6 pt-5 pb-7 border-1 border-border-primary/10 rounded-sm max-lg:hidden"
+      )
+        +filter-products("accordion-filter")
+          div(class="text-text-primary/40 text-2xl")
+            +icon("filter")
+      div(class="flex-[--spacing(226)]")
+        div(class="mb-4 max-lg:mb-7 max-lg:flex max-lg:items-end max-lg:justify-between max-lg:gap-x-4")
+          div(class="flex items-end justify-between gap-x-4 gap-y-6 flex-wrap")
+            h1(class="text-4xl font-bold leading-none")
+              | Кэжуал
+            div(class="flex flex-wrap items-center gap-x-3 gap-y-1.5")
+              div(class="text-text-primary/60")
+                | Показано 1-10 из 100 товаров
+              -
+                const selectText = {
+                  label: "Сортировать по:",
+                  options: [
+                    { value: "popular|desc", label: "Популярности" },
+                    { value: "price|ask", label: "Возрастанию цены" },
+                    { value: "price|desc", label: "Убыванию цены" },
+                  ],
+                };
+              +select-text(selectText)
+          div(class="lg:hidden")
+            +button-icon-fill("filter")(
+              data-modal-target=ID_MODAL_FILTER,
+              data-modal-show=ID_MODAL_FILTER
+            )
+        ul(class="grid grid-cols-3 max-sm:grid-cols-2 gap-x-5 max-lg:gap-x-3 gap-y-9 max-lg:gap-y-6")
+          - for (let i = 0; i < 9; i++)
+            li(class=(i === 0 ? "max-sm:col-span-full" : undefined))
+              +product-card(PRODUCT_T_SHIRT)
+        div(
+          class="flex items-center justify-between gap-x-5 pt-5 mt-8 max-md:mt-6 border-t-1 border-border-primary/10 max-md:flex-wrap max-md:gap-y-3"
+        )
+          +button-text-icon("arrow-prev")(disabled)
+            | Назад
+          -
+            const pagination = [
+              { href: "#", label: "1", isCurrent: true },
+              { href: "#", label: "2" },
+              { href: "#", label: "3" },
+              { href: "#", label: "4" },
+              { href: "#", label: "5" },
+              { href: "#", label: "6" },
+            ];
+          +pagination(pagination)
+          +button-text-icon("arrow-next", { alignIcon: "right" })
+            | Назад
